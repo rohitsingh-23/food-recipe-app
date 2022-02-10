@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="nav.css">
+    <link rel="icon"
+        href="https://media.istockphoto.com/photos/breakfast-avocado-sandwich-with-fried-egg-picture-id1353654484?b=1&k=20&m=1353654484&s=170667a&w=0&h=feth1oXjXfsoQvwDDK45S4OgZ6FGuZi9GSb5VlbzQqk=">
+    <title>Latest</title>
+    <style>
+        #item{
+            margin-top: 20px;
+            display: flex;
+
+        }
+        #name{
+            font-weight: 500;
+        }
+        #indbox{
+            line-height: 8px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        #img{
+            width: 400px;
+        }
+        #right{
+            margin-left: 20px;
+        }
+        #inst{
+            font-size: 14px;
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar"></div>
+
+    <div id="box"></div>
+</body>
+</html>
+
+<script type="module">
+    import nav from "./nav.js";
+    document.getElementById("navbar").innerHTML = nav()
+    
+    //Chivito uruguayo
+
+
+    get()
+
+    async function get(){
+        let res = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata`);
+        let data = await res.json();
+        console.log(data.meals[0]);
+        displayMeal(data.meals[0])
+    }
+
+
+    let arr = ["strIngredient1", "strIngredient2", "strIngredient3", "strIngredient4", "strIngredient5", "strIngredient6", "strIngredient7", "strIngredient8", "strIngredient9","strIngredient10", "strIngredient11", "strIngredient12", "strIngredient13", "strIngredient14", "strIngredient15", "strIngredient16", "strIngredient17", "strIngredient18", "strIngredient19", "strIngredient20"]
+
+    let measure = ["strMeasure1", "strMeasure2", "strMeasure3", "strMeasure4", "strMeasure5", "strMeasure6", "strMeasure7", "strMeasure8", "strMeasure9", "strMeasure10", "strMeasure11", "strMeasure12", "strMeasure13", "strMeasure14", "strMeasure15", "strMeasure16", "strMeasure17", "strMeasure18", "strMeasure19", "strMeasure20"]
+
+
+
+    let box = document.getElementById("box");
+    function displayMeal(item){
+        box.innerHTML = ""
+        // document.getElementById("searchResult").style.display = "none"
+        console.log("inside",item)
+        let div = document.createElement("div");
+        div.id = "item";
+        let img = document.createElement("img");
+        img.id = "img"
+        img.src = item.strMealThumb;
+        let right = document.createElement("div");
+        right.id = "right"
+        let name = document.createElement("p");
+        name.id = "name"
+        name.textContent = item.strMeal;
+        let indbox = document.createElement("div");
+        indbox.id = "indbox"
+        
+
+        for(let i=0; i<arr.length; i++){
+            // console.log(item[arr[i]].length)
+            if(item[arr[i]] !==null && item[measure[i]]!==""){
+                console.log(item[arr[i]]);
+                let ind = document.createElement("p");
+                ind.textContent = `${item[arr[i]]} : ${item[measure[i]]}`;
+                indbox.append(ind);
+            }
+        }
+
+        let inst = document.createElement("p");
+        inst.id = "inst"
+        inst.textContent = `Instructions : ${item.strInstructions}`;
+
+
+
+
+
+
+
+
+
+        right.append(name, indbox, inst)
+        div.append(img, right);
+        box.append(div);
+        
+
+
+
+
+
+
+        document.getElementById("home").addEventListener("click", home);
+    
+    function home(){
+        window.location.href = "index.html"
+    }
+
+    document.getElementById("latest").addEventListener("click", latest);
+    
+    function latest(){
+        console.log("Hello")
+        window.location.href = "latest.html"
+    }
+
+    document.getElementById("day").addEventListener("click", day);
+    
+    function day(){
+        window.location.href = "day.html"
+    }
+    }
+</script>
