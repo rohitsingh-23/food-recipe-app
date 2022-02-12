@@ -21,7 +21,7 @@ In this app you search search recipe of food by their key word and also get segg
 ### Home Page
 ![image](https://github.com/rohitsingh-23/food-recipe-app/blob/main/Ss/Home%20Page.png?raw=true)
 
-### Search seggestions
+### Search suggestion
 ![image](https://github.com/rohitsingh-23/food-recipe-app/blob/main/Ss/Home%20Page%20Debouncing.png?raw=true)
 
 ### Search Result
